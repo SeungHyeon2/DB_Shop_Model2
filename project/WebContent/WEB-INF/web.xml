@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>MybatisTest</display-name>
+
+	
+	<servlet>
+		<servlet-name>login</servlet-name>
+		<servlet-class>servletTest.LoginServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>admin/adminLogin</servlet-name>
+		<servlet-class>servletTest.AdminLoginServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin/adminLogin</servlet-name>
+		<url-pattern>/admin/adminLogin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>admin/main</servlet-name>
+		<servlet-class>servletTest.AdminMainServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin/main</servlet-name>
+		<url-pattern>/admin/main</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>admin/del_product</servlet-name>
+		<servlet-class>servletTest.DelProductServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin/del_product</servlet-name>
+		<url-pattern>/admin/del_product</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>admin/add_product</servlet-name>
+		<servlet-class>servletTest.AddProductServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin/add_product</servlet-name>
+		<url-pattern>/admin/add_product</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>admin/order</servlet-name>
+		<servlet-class>servletTest.OrderServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin/order</servlet-name>
+		<url-pattern>/admin/order</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>member/join</servlet-name>
+		<servlet-class>servletTest.JoinServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>member/join</servlet-name>
+		<url-pattern>/member/join</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>shop/index</servlet-name>
+		<servlet-class>servletTest.ShopServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/index</servlet-name>
+		<url-pattern>/shop/index</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shop/buy_list</servlet-name>
+		<servlet-class>servletTest.BuyListServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/buy_list</servlet-name>
+		<url-pattern>/shop/buy_list</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shop/basket</servlet-name>
+		<servlet-class>servletTest.BasketServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/basket</servlet-name>
+		<url-pattern>/shop/basket</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shop/product</servlet-name>
+		<servlet-class>servletTest.ProductServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/product</servlet-name>
+		<url-pattern>/shop/product</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shop/buy_product</servlet-name>
+		<servlet-class>servletTest.BuyProductServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/buy_product</servlet-name>
+		<url-pattern>/shop/buy_product</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shop/buy_products</servlet-name>
+		<servlet-class>servletTest.BuyProductsServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/buy_products</servlet-name>
+		<url-pattern>/shop/buy_products</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shop/add_basket</servlet-name>
+		<servlet-class>servletTest.AddBasketServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/add_basket</servlet-name>
+		<url-pattern>/shop/add_basket</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>member/modify</servlet-name>
+		<servlet-class>servletTest.ModifyServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>member/modify</servlet-name>
+		<url-pattern>/member/modify</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>member/modify_process</servlet-name>
+		<servlet-class>servletTest.ModifyProcessServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>member/modify_process</servlet-name>
+		<url-pattern>/member/modify_process</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>shop/del_basket</servlet-name>
+		<servlet-class>servletTest.DelBasketServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop/del_basket</servlet-name>
+		<url-pattern>/shop/del_basket</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+
+</web-app>

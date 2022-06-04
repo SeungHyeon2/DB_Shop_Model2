@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+	<select id="selectEmp" resultType="servletTest.UserVO">
+		select * from USER_MASTER
+	</select>
+	
+	<select id="loginUser" resultType="servletTest.UserVO" parameterType="servletTest.UserVO">
+		select * 
+		from USER_MASTER 
+		where WEB_ID = #{WEB_ID} 
+		and WEB_PW = #{WEB_PW}
+	</select>
+	
+	<insert id="joinUser" parameterType="servletTest.UserVO">
+		insert into USER_MASTER
+		values(#{WEB_ID},#{WEB_PW},#{NAME},#{PHONE},#{SEX},#{EMAIL},TO_DATE(#{BIRTH},'YYYY-MM-DD'))
+	</insert>
+
+	<select id="productList" resultType="servletTest.ProductVO" >
+		SELECT 
+			A.NAME AS NAME,
+			B.VALUE AS SEX,
+			A.CONTENTS AS CONTENTS,
+			A.PRICE AS PRICE,
+			A.IMAGE_URL AS IMAGE_URL  
+		FROM PRODUCT A 
+		LEFT JOIN DIVISION_01 B ON A.SEX_CODE = B.CODE
+	</select>
+	
+	<select id="buyList" resultType="servletTest.ProductVO" parameterType="servletTest.ProductVO">
+		SELECT 
+			C.NAME, 
+			C.IMAGE_URL, 
+			B.VALUE AS SEX, 
+			C.PRICE, 
+			TO_CHAR(A.REGDATE,'YYYY/mm/dd HH24:mi:ss') AS REGDATE 
+		FROM ORDER_TABLE A 
+		LEFT JOIN PRODUCT C ON A.P_NAME = C.NAME
+		LEFT JOIN DIVISION_01 B ON C.SEX_CODE = B.CODE
+		WHERE A.WEB_ID = #{WEB_ID} 
+		ORDER BY A.REGDATE DESC
+	</select>
+	
+	<select id="basketList" resultType="servletTest.ProductVO" parameterType="servletTest.ProductVO">
+		SELECT 
+			A.IDX ,
+			C.NAME, 
+			C.IMAGE_URL, 
+			B.VALUE AS SEX, 
+			C.PRICE, 
+			TO_CHAR(A.REGDATE,'YYYY/mm/dd HH24:mi:ss') AS REGDATE 
+		FROM BASKET A 
+		LEFT JOIN PRODUCT C ON A.NAME = C.NAME 
+		LEFT JOIN DIVISION_01 B ON C.SEX_CODE = B.CODE 
+		WHERE A.WEB_ID = #{WEB_ID}
+		ORDER BY A.REGDATE DESC
+	</select>
+	
+	<select id="product" resultType="servletTest.ProductVO" parameterType="servletTest.ProductVO">
+		SELECT 
+			A.NAME AS NAME,
+			B.VALUE AS SEX,
+			A.CONTENTS AS CONTENTS,
+			A.PRICE AS PRICE,
+			A.IMAGE_URL AS IMAGE_URL  
+		FROM PRODUCT A 
+		LEFT JOIN DIVISION_01 B ON A.SEX_CODE = B.CODE 
+		WHERE A.NAME = #{NAME}
+	</select>
+
+	<insert id="addBasket" parameterType="servletTest.ProductVO">
+		insert into BASKET 
+		values(#{NAME},#{WEB_ID},sysdate,BASKET_SEQ.NEXTVAL)
+	</insert>
+
+	<insert id="buyProduct" parameterType="servletTest.ProductVO">
+		insert into ORDER_TABLE  
+		values(#{NAME},#{WEB_ID},sysdate,ORDER_SEQ.NEXTVAL)
+	</insert>
+
+	<select id="getUser" resultType="servletTest.UserVO" parameterType="servletTest.UserVO">
+		select 
+			WEB_ID,
+			WEB_PW,
+			NAME,
+			PHONE,
+			SEX,
+			EMAIL,
+			TO_CHAR(BIRTH,'YYYY-mm-dd') AS BIRTH
+		from USER_MASTER 
+		where WEB_ID = #{WEB_ID} 
+	</select>
+	
+	<update id="updateUser" parameterType="servletTest.UserVO">
+		UPDATE USER_MASTER 
+		SET NAME = #{NAME},
+			WEB_PW = #{WEB_PW}, 
+			PHONE = #{PHONE}, 
+			SEX = #{SEX}, 
+			EMAIL = #{EMAIL}, 
+			BIRTH = TO_DATE(#{BIRTH},'YYYY-MM-DD')
+		WHERE WEB_ID = #{WEB_ID}
+	</update>
+	
+	<delete id="delBasket"  parameterType="servletTest.ProductVO">
+		DELETE BASKET 
+		WHERE IDX = #{IDX} 
+		AND WEB_ID = #{WEB_ID}
+	</delete>
+	
+	<select id="adminLoginUser" resultType="servletTest.UserVO" parameterType="servletTest.UserVO">
+		select * 
+		from ADMIN_MASTER 
+		where WEB_ID = #{WEB_ID} 
+		and WEB_PW = #{WEB_PW}
+	</select>
+	
+	<select id="adminMain" resultType="servletTest.ProductVO" parameterType="servletTest.ProductVO">
+		SELECT 
+			A.NAME AS NAME,
+			B.VALUE AS SEX,
+			A.CONTENTS AS CONTENTS,
+			A.PRICE AS PRICE,
+			A.IMAGE_URL AS IMAGE_URL  
+		FROM PRODUCT A 
+		LEFT JOIN DIVISION_01 B ON A.SEX_CODE = B.CODE
+	</select>
+	
+	<delete id="delProduct"  parameterType="servletTest.ProductVO">
+		DELETE PRODUCT 
+		WHERE NAME = #{NAME}
+	</delete>
+
+	<insert id="addProduct" parameterType="servletTest.ProductVO">
+		insert into PRODUCT(NAME,IMAGE_URL,PRICE,SEX_CODE,CONTENTS) 
+		values(#{NAME},#{IMAGE_URL},#{PRICE},#{SEX_CODE},#{CONTENTS})
+	</insert>
+
+	<select id="OrderList" resultType="servletTest.ProductVO" parameterType="servletTest.ProductVO">
+		select 
+			A.P_NAME, 
+			D.VALUE AS SEX, 
+			B.IMAGE_URL,
+			B.PRICE,
+			C.NAME,
+			C.PHONE, 
+			TO_CHAR(A.REGDATE,'YYYY/mm/DD HH24:mi:ss') AS REGDATE 
+		from ORDER_TABLE A 
+		LEFT JOIN PRODUCT B on A.P_NAME = B.NAME 
+		LEFT JOIN USER_MASTER C on A.WEB_ID = C.WEB_ID 
+		LEFT JOIN DIVISION_01 D on B.SEX_CODE = D.CODE  
+		ORDER BY A.REGDATE DESC
+	</select>
+
+</mapper>
